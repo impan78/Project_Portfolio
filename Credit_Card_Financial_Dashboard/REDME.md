@@ -2,10 +2,11 @@
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Dashboards Overview](#dashboards-overview)
+2. [Data Source](#data-source)
+3. [Dashboards Overview](#dashboards-overview)
    - [Credit Card Transaction Report](#credit-card-transaction-report)
    - [Credit Card Customer Report](#credit-card-customer-report)
-3. [DAX Queries](#dax-queries)
+4. [DAX Queries](#dax-queries)
 
 ---
 
@@ -14,6 +15,10 @@ The Credit Card Financial Dashboard project showcases comprehensive insights int
 
 ---
 
+## Data Source
+The data used in this project is extracted from a MySQL database. It includes transaction details, customer demographics, and other related information. The database was queried and transformed to meet the requirements of the dashboards.
+
+---
 ## Dashboards Overview
 
 ### Credit Card Transaction Report
@@ -92,6 +97,7 @@ Previous_week_revenue = CALCULATE(
         ALL(credit_card), credit_card[weeknum] = MAX(credit_card[weeknum]) -1
     )
 )
+```
 
 ### Current Week Revenue
 ```DAX
@@ -101,6 +107,7 @@ Current_week_revenue = CALCULATE(
         ALL(credit_card), credit_card[weeknum] = MAX(credit_card[weeknum])
     )
 )
+```
 
 ### Week Over Week Revenue
 ```DAX
@@ -108,6 +115,7 @@ WOW_Revenue = DIVIDE(
     ([Current_week_revenue] - [Previous_week_revenue]), 
     [Previous_week_revenue]
 )
+```
 
 ### Week Over Week Revenue
 ```DAX
@@ -119,6 +127,7 @@ AgeGroup = SWITCH(TRUE(),
     customer[Customer_Age] >= 60, "60+",
     "unknown"
 )
+```
 
 ### Income Group
 ```DAX
@@ -128,6 +137,7 @@ Income_Group = SWITCH(TRUE(),
     customer[Income] >= 70000, "High",
     "unknown"
 )
+```
 
 
 
